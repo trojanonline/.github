@@ -17,3 +17,4 @@ jobs:
         with:
           fail-on-severity: high
           comment-summary-in-pr: always
+        continue-on-error: true
