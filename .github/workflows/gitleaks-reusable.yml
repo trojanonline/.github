@@ -1,0 +1,23 @@
+name: gitleaks-reusable
+on:
+  workflow_call:
+    inputs:
+      config:
+        description: Optional path to a gitleaks config in the calling repo
+        required: false
+        type: string
+        default: ""
+permissions:
+  contents: read
+jobs:
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: gitleaks secret scan
+        run: |
+          CONF=""
+          if [ -n "${{ inputs.config }}" ] && [ -f "${{ inputs.config }}" ]; then CONF="--config=/repo/${{ inputs.config }}"; fi
+          docker run --rm -v "${{ github.workspace }}:/repo" ghcr.io/gitleaks/gitleaks:latest detect --source=/repo $CONF --redact --no-banner --verbose
