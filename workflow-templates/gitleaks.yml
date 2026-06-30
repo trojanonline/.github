@@ -1,0 +1,7 @@
+name: gitleaks
+on:
+  push:
+  pull_request:
+jobs:
+  secrets:
+    uses: trojanonline/.github/.github/workflows/gitleaks-reusable.yml@main
