@@ -1,0 +1,6 @@
+{
+  "name": "gitleaks secret scan",
+  "description": "Scan for committed secrets with gitleaks (Trojan org standard, license-free).",
+  "iconName": "octicon-shield-lock",
+  "categories": ["security"]
+}
